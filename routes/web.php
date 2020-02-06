@@ -14,3 +14,19 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/tasks', function(){
+    return "Listado de tareas";
+});
+
+Route::post('/tasks/create', function(){
+    return "Aquí recibimos un POST de un form y creamos la tarea";
+});
+
+Route::delete('/tasks/delete/{id}', function($task_id){
+    return "Aquí eliminamos la tarea";
+});
+
+Route::get('/tasks/complete/{id}', function($task_id){
+    return "Aquí marcamos como completada una tarea";
+});
