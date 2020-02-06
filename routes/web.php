@@ -18,15 +18,15 @@ Route::get('/tasks/list', function(){
     return view('home');
 })->name('home'); 
 
-Route::get('/tasks/new', function(){
+Route::get('/tasks/new/{newtask}', function($newtask){
 
 });
 
-Route::get('/tasks/erase', function(){
+Route::get('/tasks/erase/{taskid}', function($taskid){
     
 });
 
-Route::get('/tasks/done', function(){
+Route::get('/tasks/done{taskid}', function($taskid){
 
 });
 ?>
