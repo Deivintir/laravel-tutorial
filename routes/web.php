@@ -11,6 +11,22 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/tasks/list', function(){
+    return view('home');
+})->name('home'); 
+
+Route::get('/tasks/new', function(){
+
 });
+
+Route::get('/tasks/erase', function(){
+    
+});
+
+Route::get('/tasks/done', function(){
+
+});
+?>
