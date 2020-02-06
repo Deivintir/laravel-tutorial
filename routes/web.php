@@ -18,7 +18,7 @@ Route::get('/tasks/list', function(){
     return view('home');
 })->name('home'); 
 
-Route::get('/tasks/new/{newtask}', function($newtask){
+Route::post('/tasks/create', function(){
 
 });
 
