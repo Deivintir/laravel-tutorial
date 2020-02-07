@@ -63,7 +63,7 @@
 
                   <form action="/editar/{{$tarea->id}}" method="POST" style="margin-right: 5px">
                   {{ csrf_field() }}
-                    <button class="btn btn-info" type="submit">Terminado</button>
+                    <button class="btn btn-info" type="submit">Done</button>
                   </form>
 
                   @endif
@@ -71,7 +71,7 @@
                   <form action="/borrar/{{$tarea->id}}" method="POST">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
-                    <button class="btn btn-danger" type="submit">Borrar</button>
+                    <button class="btn btn-danger" type="submit">Delete</button>
                   </form>
                 </div>
               </li>
