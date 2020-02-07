@@ -61,7 +61,7 @@
 
                   @if($tarea->done == false)
 
-                  <form action="/editar/{{$tarea->id}}" method="POST" style="margin-right: 5px">
+                  <form action="/done/{{$tarea->id}}" method="POST" style="margin-right: 5px">
                   {{ csrf_field() }}
                     <button class="btn btn-info" type="submit">Done</button>
                   </form>

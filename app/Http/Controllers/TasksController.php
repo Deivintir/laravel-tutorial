@@ -85,12 +85,16 @@ class TasksController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Task  $task
+     * @param  Integer  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Task $task)
+    public function done(Request $request, $id)
     {
-        //
+       // dd($task);
+        $task = Task::findOrFail($id);
+        $task->done = true;
+        $task->save();
+        return redirect("/");
     }
 
     /**
