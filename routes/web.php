@@ -10,7 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', 'TasksController@index');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::post('/store', 'TasksController@store');
+
+Route::post('/done/{id}', 'TasksController@done');
+
+Route::delete('/delete/{id}', 'TasksController@destroy');
