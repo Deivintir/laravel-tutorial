@@ -50,16 +50,16 @@
               @foreach($tareas as $tarea)
               <li
                 
-                @if($tarea->completado == 1)
+                @if($tarea->done == true)
                   style="background-color: #d7ff7c"
                 @endif
 
                 class="list-group-item d-flex justify-content-between align-items-center action"
               >
-                {{$tarea->nombre}}
+                {{$tarea->name}}
                 <div class="d-flex">
 
-                  @if($tarea->completado == 0)
+                  @if($tarea->done == false)
 
                   <form action="/editar/{{$tarea->id}}" method="POST" style="margin-right: 5px">
                   {{ csrf_field() }}
