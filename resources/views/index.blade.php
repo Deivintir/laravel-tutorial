@@ -68,7 +68,7 @@
 
                   @endif
 
-                  <form action="/borrar/{{$tarea->id}}" method="POST">
+                  <form action="/delete/{{$tarea->id}}" method="POST">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
                     <button class="btn btn-danger" type="submit">Delete</button>
