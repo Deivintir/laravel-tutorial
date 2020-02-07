@@ -38,15 +38,15 @@ class TasksController extends Controller
      */
     public function store(Request $request)
     {
-        $validador = Validator::make($request->all(), 
-          [
-            'name' => 'required|max:255',
-          ]
+        $validador = Validator::make(
+            $request->all(),
+            [
+                'name' => 'required|max:255',
+            ]
         );
 
-        if($validador->fails())
-        {
-          return redirect('/')->withInput()->withErrors($validador);
+        if ($validador->fails()) {
+            return redirect('/')->withInput()->withErrors($validador);
         }
 
         $tarea = new Task;
@@ -57,7 +57,7 @@ class TasksController extends Controller
         return redirect('/');
     }
 
-    
+
 
     /**
      * Display the specified resource.
@@ -90,7 +90,6 @@ class TasksController extends Controller
      */
     public function done(Request $request, $id)
     {
-       // dd($task);
         $task = Task::findOrFail($id);
         $task->done = true;
         $task->save();
