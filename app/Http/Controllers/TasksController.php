@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TasksController extends Controller
 {
@@ -37,8 +38,26 @@ class TasksController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validador = Validator::make($request->all(), 
+          [
+            'name' => 'required|max:255',
+          ]
+        );
+
+        if($validador->fails())
+        {
+          return redirect('/')->withInput()->withErrors($validador);
+        }
+
+        $tarea = new Task;
+        $tarea->name = $request->name;
+        $tarea->done = false;
+        $tarea->save();
+
+        return redirect('/');
     }
+
+    
 
     /**
      * Display the specified resource.

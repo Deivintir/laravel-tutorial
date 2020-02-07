@@ -34,10 +34,10 @@
                 </ul>
               </div>
             @endif
-            <form action="/nueva-tarea/" method="POST" class="form-inline align-items-center justify-content-center">
+            <form action="/store" method="POST" class="form-inline align-items-center justify-content-center">
             {{ csrf_field() }}
               <div class="form-group mx-sm-3 mb-2">
-                <input class="form-control" id="nombre" name="nombre" placeholder="Tarea nueva">
+                <input class="form-control" id="nombre" name="name" placeholder="Tarea nueva">
               </div>
               <button type="submit" class="btn btn-success mb-2">Aceptar</button>
             </form>
