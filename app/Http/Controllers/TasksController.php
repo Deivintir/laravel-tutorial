@@ -14,11 +14,16 @@ class TasksController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
+        //los comentarios son del 09/02/2020.
         $tareas = Task::all();
+        $tareas = Task::where('done', true)->get();// Modificador de la url de tareas hechas
+        $tareas = Task::where('done', false)->get();// Modificador de la url de tareas sin hacer
+        $tareas = Task::all();// Modificador de la url para tareas borradas
         $vista = view('index', ['tareas' => $tareas]);
         return $vista;
     }
+    //fin del comentario.
 
     /**
      * Show the form for creating a new resource.

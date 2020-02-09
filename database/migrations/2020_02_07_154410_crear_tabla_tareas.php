@@ -18,6 +18,7 @@ class CrearTablaTareas extends Migration
             $table->string('name');
             $table->boolean('done');
             $table->timestamps();
+            $table->softDeletes(); // 09/02/2020->añadido un soft delete para crear una columna DB y poder ver lo "borrado" (sin acabar la logica).
             
         });
     }
