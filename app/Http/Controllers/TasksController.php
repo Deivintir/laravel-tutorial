@@ -13,13 +13,25 @@ class TasksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {   
+    public function index(Request $request)
+    {
         //los comentarios son del 09/02/2020.
-        $tareas = Task::all();
-        $tareas = Task::where('done', true)->get();// Modificador de la url de tareas hechas
-        $tareas = Task::where('done', false)->get();// Modificador de la url de tareas sin hacer
-        $tareas = Task::all();// Modificador de la url para tareas borradas
+        $filtro = isset($request->filtro) ? $request->filtro : "all";
+        switch ($filtro) {
+            case 'done':
+                $tareas = Task::where('done', true)->get(); // Modificador de la url de tareas hechas
+                break;
+            case 'undone':
+                $tareas = Task::where('done', false)->get(); // Modificador de la url de tareas sin hacer
+                break;
+            case 'bin':
+                $tareas = Task::onlyTrashed()->get(); // Modificador de la url para tareas borradas
+                break;
+            case 'all':
+            default:
+                $tareas = Task::all();
+                break;
+        }
         $vista = view('index', ['tareas' => $tareas]);
         return $vista;
     }

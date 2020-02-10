@@ -73,11 +73,19 @@
 
           @endif
 
+          @if($tarea->trashed())
+          <form action="/recover/{{$tarea->id}}" method="POST">
+            {{ csrf_field() }}
+            <button class="btn btn-secondary" type="submit">Recover</button>
+          </form>
+          @else
           <form action="/delete/{{$tarea->id}}" method="POST">
             {{ csrf_field() }}
             {{ method_field('DELETE') }}
             <button class="btn btn-danger" type="submit">Delete</button>
           </form>
+          @endif
+
         </div>
       </li>
       @endforeach
