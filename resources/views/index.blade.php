@@ -35,6 +35,23 @@
 
   <div style="padding: 40px 160px 0px 160px" class="container">
     <p class="text-center">Lista de Tareas</p>
+    <!-- "a partir de aqui" añadidos botones para filtros del contenido de la tabla (inacabado). -->
+    <div class="row"> 
+      <div class="col-md-3">
+        <a class="btn btn-secondary btn-block" href="/?filtro=all">Overview</a>
+      </div>
+      <div class="col-md-3">
+        <a class="btn btn-success btn-block" href="/?filtro=done">Done</a>
+      </div>
+      <div class="col-md-3">
+        <a class="btn btn-primary btn-block" href="/?filtro=undone">Undone</a>
+      </div>
+      <div class="col-md-3">
+        <a class="btn btn-danger btn-block" href="/?filtro=bin">Bin</a>
+      </div>
+    </div>
+    <!-- Fin del comentario. -->
+
     @if(count($tareas) > 0)
     <ul class="list-group">
       @foreach($tareas as $tarea)
@@ -56,11 +73,19 @@
 
           @endif
 
+          @if($tarea->trashed())
+          <form action="/recover/{{$tarea->id}}" method="POST">
+            {{ csrf_field() }}
+            <button class="btn btn-secondary" type="submit">Recover</button>
+          </form>
+          @else
           <form action="/delete/{{$tarea->id}}" method="POST">
             {{ csrf_field() }}
             {{ method_field('DELETE') }}
             <button class="btn btn-danger" type="submit">Delete</button>
           </form>
+          @endif
+
         </div>
       </li>
       @endforeach

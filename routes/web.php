@@ -17,3 +17,5 @@ Route::post('/store', 'TasksController@store');
 Route::post('/done/{id}', 'TasksController@done');
 
 Route::delete('/delete/{id}', 'TasksController@destroy');
+
+Route::post('/recover/{id}', 'TasksController@recover');

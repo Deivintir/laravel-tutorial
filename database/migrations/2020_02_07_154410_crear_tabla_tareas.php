@@ -18,7 +18,7 @@ class CrearTablaTareas extends Migration
             $table->string('name');
             $table->boolean('done');
             $table->timestamps();
-            
+            $table->softDeletes(); 
         });
     }
 

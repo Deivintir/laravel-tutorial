@@ -13,12 +13,29 @@ class TasksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tareas = Task::all();
+        //los comentarios son del 09/02/2020.
+        $filtro = isset($request->filtro) ? $request->filtro : "all";
+        switch ($filtro) {
+            case 'done':
+                $tareas = Task::where('done', true)->get(); // Modificador de la url de tareas hechas
+                break;
+            case 'undone':
+                $tareas = Task::where('done', false)->get(); // Modificador de la url de tareas sin hacer
+                break;
+            case 'bin':
+                $tareas = Task::onlyTrashed()->get(); // Modificador de la url para tareas borradas
+                break;
+            case 'all':
+            default:
+                $tareas = Task::all();
+                break;
+        }
         $vista = view('index', ['tareas' => $tareas]);
         return $vista;
     }
+    //fin del comentario.
 
     /**
      * Show the form for creating a new resource.
@@ -95,6 +112,21 @@ class TasksController extends Controller
         $task->save();
         return redirect("/");
     }
+
+        /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  Integer  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function recover(Request $request, $id)
+    {
+        $task = Task::onlyTrashed()->where('id', $id)->firstOrFail();
+        $task->restore();
+        return redirect("/");
+    }
+
 
     /**
      * Remove the specified resource from storage.
