@@ -59,6 +59,7 @@ class TasksController extends Controller
             $request->all(),
             [
                 'name' => 'required|max:255',
+                'priority' => 'required|digits_between:-2,2',
             ]
         );
 
@@ -69,6 +70,7 @@ class TasksController extends Controller
         $tarea = new Task;
         $tarea->name = $request->name;
         $tarea->done = false;
+        $tarea->priority = $request->priority;
         $tarea->save();
 
         return redirect('/');

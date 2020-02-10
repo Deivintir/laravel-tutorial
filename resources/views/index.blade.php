@@ -29,6 +29,16 @@
       <div class="form-group mx-sm-3 mb-2">
         <input class="form-control" id="nombre" name="name" placeholder="Tarea nueva">
       </div>
+      <div class="form-group mx-sm-3 mb-2">
+        <select name="priority" id="priority">
+          <option selected disabled>Prioridad</option>
+          <option value=2>Muy alta</option>
+          <option value=1>Alta</option>
+          <option value=0>Normal</option>
+          <option value=-1>Baja</option>
+          <option value=-2>Muy baja</option>
+        </select>
+      </div>
       <button type="submit" class="btn btn-success mb-2">Aceptar</button>
     </form>
   </div>
@@ -63,6 +73,10 @@
         >
         {{$tarea->name}}
         <div class="d-flex">
+
+            <span class ="btn btn-info mr-1" >
+               {{ $tarea->getPriorityName() }} 
+            </span>
 
           @if($tarea->done == false)
 
