@@ -113,6 +113,21 @@ class TasksController extends Controller
         return redirect("/");
     }
 
+        /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  Integer  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function recover(Request $request, $id)
+    {
+        $task = Task::onlyTrashed()->where('id', $id)->firstOrFail();
+        $task->restore();
+        return redirect("/");
+    }
+
+
     /**
      * Remove the specified resource from storage.
      *
